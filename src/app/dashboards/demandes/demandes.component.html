@@ -1,0 +1,200 @@
+
+<div class="page-header">
+    <div class="page-block">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <div class="page-header-title">
+                    <h5 class="m-b-10">Détails des demandes </h5>
+                    <p class="m-b-0"> </p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <ul class="breadcrumb-title">
+                    <li class="breadcrumb-item">
+                        <a routerLink="/home"> <i class="fa fa-home"></i> </a>
+                    </li>
+                    <li class="breadcrumb-item"><a href="#!">Demandes</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div><div class="card">
+    <div class="card-header">
+        <h2>Liste des demandes</h2>
+        <span> </span>
+        <div class="card-header-right">
+            <ul class="list-unstyled card-option">
+                <li><i class="fa fa fa-wrench open-card-option"></i></li>
+                <li><i class="fa fa-window-maximize full-card"></i></li>
+                <li><i class="fa fa-minus minimize-card"></i></li>
+                <li><i class="fa fa-refresh reload-card"></i></li>
+                <li><i class="fa fa-trash close-card"></i></li>
+            </ul>
+        </div>
+    </div>
+    <div class="d-flex justify-content-end">
+
+        <form class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="Chercher" aria-label="Search">
+            <button data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary btn-round waves-effect waves-light " type="submit">Chercher</button>
+        </form>
+        <button (click)="clickAddDemandes()" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary btn-round waves-effect waves-light"> + Nouvelle demande  </button>
+      </div>
+
+      <div class="row" *ngIf="showForm">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-block">
+                    <form  [formGroup]="formDemande" class="form-material">         
+                        <div class="form-group "[ngClass]="{' form-success':formDemande.get('Nom')?.valid,'form-danger':formDemande.get('Nom')?.invalid}">
+                            <input type="text" name="footer-Nom" formControlName="Nom" class="form-control" required="">
+                            <span class="form-bar"></span>
+                            <label class="float-label"><h4>Nom : </h4></label>
+                        </div>
+                        <div class="form-group "[ngClass]="{' form-success':formDemande.get('Prenom')?.valid,'form-danger':formDemande.get('Prenom')?.invalid}">
+                            <input type="text" name="footer-Prenom" formControlName="Prenom" class="form-control" required="">
+                            <span class="form-bar"></span>
+                            <label class="float-label"><h4>Prénom : </h4></label>
+                        </div>
+                        <div class="form-group "[ngClass]="{' form-success':formDemande.get('type')?.valid,'form-danger':formDemande.get('type')?.invalid}">
+                            
+                            <label class="float-label"><h4>Type : </h4></label>
+                            <br/> <br/>
+
+                            <div class="form-check">
+
+                                <label *ngFor="let radiobutton of radioItems">
+                                    <input
+                                      type="radio"
+                                      name="options"
+                                      (click)="model.option = radiobutton"
+                                      [checked]="radiobutton === model.option"
+                                    />{{ radiobutton }}
+                                </label>
+                                <div *ngIf="model.option =='Congé'">
+                                    <div class="form-check">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                            <label class="form-check-label" for="flexRadioDefault1">
+                                              <h6>Congé soldé</h6>
+                                            </label>
+                                          </div>
+                                          <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                                            <label class="form-check-label" for="flexRadioDefault2">
+                                              <h6>Congé sans solde </h6>
+                                              
+                                            </label>
+                                          </div>
+                                        <br/>
+                                        <div class="form-group "[ngClass]="{' form-success':formDemande.get('date_debut')?.valid,'form-danger':formDemande.get('date_debut')?.invalid}">
+                                            <input type="text" name="footer-date_debut" formControlName="date_debut"   class="form-control" required="">
+                                            <span class="form-bar"></span>
+                                            <label class="float-label"><h4>Date de début :</h4></label>
+                                        </div>
+                                        <div class="form-group "[ngClass]="{' form-success':formDemande.get('date_fin')?.valid,'form-danger':formDemande.get('date_fin')?.invalid}">
+                                            <input type="text" name="footer-date_fin" formControlName="date_fin"   class="form-control" required="">
+                                            <span class="form-bar"></span>
+                                            <label class="float-label"><h4>Date de fin :</h4></label>
+                                        </div>
+                                        <div class="form-group "[ngClass]="{' form-success':formDemande.get('description')?.valid,'form-danger':formDemande.get('description')?.invalid}">
+                                            <input type="text" name="footer-description" formControlName="description" class="form-control" required="">
+                                            <span class="form-bar"></span>
+                                            <label class="float-label"> <h4>Description :  </h4></label>
+                                        </div>
+                                        
+
+                                    </div>    
+                                    
+                                </div>
+                                
+                                <div *ngIf="model.option == 'Autorisation'">
+                                    <br/>
+                                    
+                                    <div class="form-group "[ngClass]="{' form-success':formDemande.get('heure_debut')?.valid,'form-danger':formDemande.get('heure_debut')?.invalid}">
+                                        <input type="text" name="footer-heure_debut" formControlName="heure_debut"   class="form-control" required="">
+                                        <span class="form-bar"></span>
+                                        <label class="float-label"><h4>Heure de début :</h4></label>
+                                    </div>
+                                    <div class="form-group "[ngClass]="{' form-success':formDemande.get('heure_fin')?.valid,'form-danger':formDemande.get('heure_fin')?.invalid}">
+                                        <input type="text" name="footer-heure_fin" formControlName="heure_fin"   class="form-control" required="">
+                                        <span class="form-bar"></span>
+                                        <label class="float-label"><h4>Heure de fin :</h4></label>
+                                    </div>
+                                    <div class="form-group "[ngClass]="{' form-success':formDemande.get('description')?.valid,'form-danger':formDemande.get('description')?.invalid}">
+                                        <input type="text" name="footer-description" formControlName="description"   class="form-control" required="">
+                                        <span class="form-bar"></span>
+                                        <label class="float-label"><h4>Description :</h4></label>
+                                    </div>
+                                    
+
+                                </div>
+                                  
+                                
+                            </div>
+                        </div>
+                        
+                        
+                        
+                        
+                       
+                          <!-- <button (click)="postEmployeeDetails()" *ngIf="showAdd" class="btn btn-success" data-bs-dismiss="modal"> Add </button>
+                               <button (click)="updateEmployeeDetails()" *ngIf="showUpdate" class="btn btn-info" data-bs-dismiss="modal"> Update</button>
+                          -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary btn-round waves-effect waves-light" (click)="close()" data-dismiss="modal">Annuler</button>
+                            <button class="btn btn-primary btn-round waves-effect waves-light" (click)="saveDemandes()" type="submit">enregistrer</button>
+
+                        </div>
+                       
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+  
+    <div class="card-block table-border-style">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Type</th>
+                        <th> début</th>
+                        <th> fin </th>
+                        <th>Description</th>
+                        
+                        
+                        <th>Action </th>
+                    </tr>    
+                </thead>
+                <tbody>
+                    <tr  *ngFor="let demande of demandes ">
+                        <th scope="row">1</th>
+                        <td>{{demande.Nom}}</td>
+                        <td>{{demande.Prenom}}</td>
+                        <td>{{demande.type}}</td>
+                        <td>{{demande.ddebut}}</td>
+                        <td>{{demande.dfin}}</td>
+                        <td>{{demande.description}}</td>
+                        
+
+                        <td>
+                            <button  class="btn btn-success mx-3 btn-round waves-effect waves-light"> Accepter</button>
+                            <button  class="btn btn-info btn-round waves-effect waves-light">Reffuser</button>
+                            <button  class="btn btn-danger mx-3 btn-round waves-effect waves-light">Supprimer </button>
+                            
+                        </td>
+                        
+                       
+                    </tr>
+                    
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
