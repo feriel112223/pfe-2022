@@ -1,6 +1,6 @@
 <ng-template #content let-modal>
   <div class="modal-header">
-    <h6 class="modal-title" id="modal-basic-title">Profile update</h6>
+    <h6 class="modal-title" id="modal-basic-title">Détails du demande </h6>
     <button
       type="button"
       class="btn-close"
@@ -18,17 +18,6 @@
         }"
       >
         <label class="float-label"><h6>Nom :</h6></label>
-
-
-
-
-
-
-
-
-
-
-        
         <input
           type="text"
           name="footer-Nom"
@@ -97,7 +86,7 @@
               >
               <label class="float-label"><h6>Date de début :</h6></label>
               <input
-                  type="number"
+                  type="date"
                   name="footer-date_debut"
                   formControlName="date_debut"
                   class="form-control"
@@ -115,7 +104,7 @@
               <label class="float-label"><h6>Date de fin :</h6></label>
 
               <input
-                  type="number"
+                  type="date"
                   name="footer-date_fin"
                   formControlName="date_fin"
                   class="form-control"
@@ -154,7 +143,7 @@
 
             <label class="float-label"><h6>Heure de début :</h6></label>
             <input
-                type="text"
+                type="time"
                 name="footer-heure_debut"
                 formControlName="heure_debut"
                 class="form-control"
@@ -171,7 +160,7 @@
             >
             <label class="float-label"><h6>Heure de fin :</h6></label>
             <input
-                type="text"
+                type="time"
                 name="footer-heure_fin"
                 formControlName="heure_fin"
                 class="form-control"

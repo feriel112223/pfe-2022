@@ -74,7 +74,7 @@ export class DemandesComponent implements OnInit {
     this.modalService.open(content,{size:"lg"})
   }
   saveDemandes() {
-    this.toastr.success('Hello world!', 'Toastr fun!');
+    this.toastr.success('Demande ajoutée avec succé');
     console.log(this.formDemande.value);
     // console.log(this.formDemande.get('Nom')?.value);
     // console.log(this.formDemande.get('Prenom')?.value);

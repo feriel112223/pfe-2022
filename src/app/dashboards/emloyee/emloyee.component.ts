@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 import { EmployeeService } from 'src/app/shared/services/employee.service';
 
 @Component({
@@ -11,8 +13,17 @@ export class EmloyeeComponent implements OnInit {
   employees:any;
   formEmployee:FormGroup;
   showForm=false;
+  model2 = { option: '' };
+  radioItems2: any;
   
-   constructor(private employeesServ:EmployeeService ,private formbuilder:FormBuilder) {
+   constructor(private employeesServ:EmployeeService ,private formbuilder:FormBuilder,private toastr: ToastrService,
+    private modalService: NgbModal) {
+
+
+      this.radioItems2 = [
+        { name: 'Femme', value: 'femme' },
+        { name: 'Homme', value: 'homme' },
+      ];
       
      this.formEmployee  = this.formbuilder.group({
 
@@ -25,7 +36,6 @@ export class EmloyeeComponent implements OnInit {
         Validators.pattern('^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]{0,10})*@[A-Za-z0-9]+(\\.[A-Za-z0-9]{0,10})*(\\.[A-Za-z]{0,5})$'),
         Validators.required])],
        tel :['',Validators.required],
-       adresse :['',Validators.required]
      })
     }
  
@@ -41,8 +51,11 @@ export class EmloyeeComponent implements OnInit {
     this.showForm= !this.showForm;
 
    }
- 
-   postEmployeeDetails(){
+   openModal(content:any){
+    this.modalService.open(content,{size:"lg"})
+  }
+ postEmployeeDetails()
+   {
     /* console.log(this.formEmployee.get('Nom')?.value);
      console.log(this.formEmployee.get('Prenom')?.value);
      console.log(this.formEmployee.get('sexe')?.value);
@@ -53,6 +66,7 @@ export class EmloyeeComponent implements OnInit {
      console.log(this.formEmployee.get('adresse')?.value);
      
    */
+     this.toastr.success('Employé  ajouté avec succée ');
      console.log(this.formEmployee.value);
    }
    /*
