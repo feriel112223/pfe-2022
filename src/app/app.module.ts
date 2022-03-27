@@ -13,10 +13,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './dashboards/home/home.component';
 import { CalendrierDeTravailComponent } from './dashboards/calendrier-de-travail/calendrier-de-travail.component';
+
 import { ListeCongesComponent } from './dashboards/liste-conges/liste-conges.component';
 import {Ng2SearchPipeModule} from 'ng2-search-filter';
 import {FormsModule} from '@angular/forms';
 import { FicheDePaiesComponent } from './dashboards/fiche-de-paies/fiche-de-paies.component';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -38,14 +42,17 @@ import { FicheDePaiesComponent } from './dashboards/fiche-de-paies/fiche-de-paie
     
   
   ],
+
   imports: [
+    BrowserAnimationsModule,
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
     Ng2SearchPipeModule,
     FormsModule,
-
+    ToastrModule.forRoot(),
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

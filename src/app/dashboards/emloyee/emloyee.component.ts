@@ -21,7 +21,9 @@ export class EmloyeeComponent implements OnInit {
        Prenom :['',Validators.required],
        sexe:['', Validators.required],
        date_nais:['',Validators.required],
-       email :['',Validators.required],
+       email: ['', Validators.compose([
+        Validators.pattern('^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]{0,10})*@[A-Za-z0-9]+(\\.[A-Za-z0-9]{0,10})*(\\.[A-Za-z]{0,5})$'),
+        Validators.required])],
        tel :['',Validators.required],
        adresse :['',Validators.required]
      })

@@ -27,13 +27,17 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css",
+              "src/styles.scss",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/assets/pages/waves/css/waves.min.css",
               "src/assets/css/bootstrap/css/bootstrap.min.css",
               "src/assets/icon/themify-icons/themify-icons.css",
               "src/assets/icon/font-awesome/css/font-awesome.min.css",
               "src/assets/css/jquery.mCustomScrollbar.css",
-              "src/assets/css/style.css"
+              "src/assets/css/style.css",
+              "node_modules/ngx-toastr/toastr.css"
+              
+
             ],
             "scripts": [
               "src/assets/js/jquery/jquery.min.js",
