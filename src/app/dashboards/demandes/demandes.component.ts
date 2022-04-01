@@ -19,6 +19,8 @@ export class DemandesComponent implements OnInit {
   formDemande: FormGroup;
   autorisationForm: FormGroup;
   congeForm: FormGroup;
+  showAdd!: boolean;
+  showUpdate !: boolean;
   showForm: any;
   constructor(
     private demandesServ: DemandesService,
@@ -57,14 +59,18 @@ export class DemandesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.demandesServ.getAllDemandes());
+    /*console.log(this.demandesServ.getAllDemandes());
     this.demandes = this.demandesServ.getAllDemandes();
+    */
   }
   ///clickAddDemandes(){
   /// this.formDemande.reset();
   ///}
   clickAddDemandes() {
     this.showForm = !this.showForm;
+    this.formDemande.reset();
+      this.showAdd = true;
+      this.showUpdate = false;
   }
   close() {
     this.showForm = !this.showForm;
@@ -86,5 +92,82 @@ export class DemandesComponent implements OnInit {
     // console.log(this.formDemande.get('heure_debut')?.value);
     // console.log(this.formDemande.get('heure_fin')?.value);
     // console.log(this.formDemande.get('description')?.value);
+
+
+    this.demandesServ.postDemande(this.formDemande.value)
+    .subscribe(res=>{
+      console.log(res);
+      this.toastr.success('Demande  ajouté avec succée ');
+      let ref = document.getElementById('cancel')
+      ref?.click();
+      this.formDemande.reset();
+      return this.getAllDemande();
+    },
+    err=>{
+      this.toastr.error('Il y a un problém ');
+    }
+    )
+   }
+   getAllDemande(){
+    this.demandesServ.getAllDemande().subscribe((res : any)=>{
+      this.demandes = res;
+      console.log(res);
+
+    },
+    (err : any)=>{
+      console.log(err);
+      
+    }
+    )
   }
+  deleteDemande(Demande : any){
+    this.demandesServ.deleteDemande(Demande.id)
+    .subscribe((res : any )=>{
+      this.toastr.success('Demande  supprimer ');
+      this.getAllDemande();
+    })
+  }
+  onUpdate(Demande : any){
+    this.showAdd = false;
+    this.showUpdate = true;
+    
+    this.demandes.id = this.demandes.id;
+    this.formDemande.controls['Nom'].setValue(this.demandes.Nom);
+    this.formDemande.controls['Prenom'].setValue(this.demandes.Prenom);
+    this.formDemande.controls['type'].setValue(this.demandes.type);
+    this.formDemande.controls['date_debut'].setValue(this.demandes.date_debut);
+    this.formDemande.controls['date_fin'].setValue(this.demandes.date_fin);
+    this.formDemande.controls['heure_debut'].setValue(this.demandes.heure_debut);
+    this.formDemande.controls['heure_fin'].setValue(this.demandes.heure_fin);
+    this.formDemande.controls['description'].setValue(this.demandes.description);
+
+   
+  }
+  updateDemandeDetails(){
+    this.demandes.Nom = this.formDemande.value.Nom;
+    this.demandes.Prenom = this.formDemande.value.Prenom;
+    this.demandes.type = this.formDemande.value.type;
+    this.demandes.datte_debut = this.formDemande.value.date_debut;
+    this.demandes.date_fin = this.formDemande.value.date_fin;
+    this.demandes.heure_debut = this.formDemande.value.heure_debut;
+    this.demandes.heure_fin = this.formDemande.value.heure_fin;
+    this.demandes.description = this.formDemande.value.description;
+
+    
+
+    this.demandes.updateEmployee(this.demandes,this.demandes.id)
+    .subscribe((res : any)=>{
+      this.toastr.success('Demande modifié');
+      let ref = document.getElementById('cancel')
+      ref?.click();
+      this.formDemande.reset();
+      this.getAllDemande();
+    })
+
+  }
+    
+
+     
+   
+  
 }

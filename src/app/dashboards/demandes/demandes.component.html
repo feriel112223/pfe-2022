@@ -202,6 +202,16 @@
       [disabled]="this.congeForm.invalid && this.autorisationForm.invalid"
       class="btn btn-primary btn-round waves-effect waves-light"
       (click)="saveDemandes()"
+      *ngIf="showAdd"
+      type="submit"
+    >
+      Ajouter
+    </button>
+    <button
+      [disabled]="this.congeForm.invalid && this.autorisationForm.invalid"
+      class="btn btn-primary btn-round waves-effect waves-light"
+      (click)="updateDemandeDetails()"
+      *ngIf="showUpdate"
       type="submit"
     >
       enregistrer
@@ -297,24 +307,32 @@
             <th scope="row">1</th>
             <td>{{ demande.Nom }}</td>
             <td>{{ demande.Prenom }}</td>
-            <td>{{ demande.type }}</td>
+            <td>{{ demande.type_demande }}</td>
             <td>{{ demande.ddebut }}</td>
             <td>{{ demande.dfin }}</td>
             <td>{{ demande.description }}</td>
 
             <td>
               <button
-                class="btn btn-success mx-3 btn-round waves-effect waves-light"
+                class="btn btn-success mx-3 btn-round waves-effect waves-light" 
               >
                 Accepter
               </button>
-              <button class="btn btn-info btn-round waves-effect waves-light">
+              <button class="btn btn-info btn-round waves-effect waves-light"
+              >
                 Reffuser
               </button>
               <button
                 class="btn btn-danger mx-3 btn-round waves-effect waves-light"
+                (click)="deleteDemande(demande)"
               >
                 Supprimer
+              </button>
+              <button
+                class="btn btn-warn mx-3 btn-round waves-effect waves-light" 
+                (click)="onUpdate(demande)" 
+              >
+                Modifier
               </button>
             </td>
           </tr>

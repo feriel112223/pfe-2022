@@ -6,8 +6,10 @@ import { Injectable } from '@angular/core';
 })
 export class DemandesService {
   demandes: any;
+  path ="http://localhost:3306";
 
   constructor(private http: HttpClient) {
+   
     this.demandes = [
       {
         Nom:'abbes',
@@ -35,20 +37,18 @@ export class DemandesService {
   /**
    * test
    */
-  getAllDemandes(){
-    return this.demandes;
-  }
+ 
 
   postDemande(data: any) {
-    return this.http.post<any>('', data);
+    return this.http.post<any>(this.path + "/demandes", data);
   }
-  getDemande() {
-    return this.http.get<any>('');
+  getAllDemande() {
+    return this.http.get<any>(this.path + "/demandes");
   }
   updateDemande(data: any, id: number) {
-    return this.http.put<any>(' ' + id, data);
+    return this.http.put<any>(this.path + "/demandes/" + id, data);
   }
   deleteDemande(id: number) {
-    return this.http.delete<any>('' + id);
+    return this.http.delete<any>(this.path + "/demandes/"+ id);
   }
 }

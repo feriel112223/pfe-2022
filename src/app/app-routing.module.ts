@@ -1,6 +1,7 @@
 import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './Auth/login/login.component';
+import { ResetpasswordComponent } from './Auth/resetpassword/resetpassword.component';
 import { CalendrierDeTravailComponent } from './dashboards/calendrier-de-travail/calendrier-de-travail.component';
 import { DashboardComponent } from './dashboards/dashboard/dashboard.component';
 import { DemandesComponent } from './dashboards/demandes/demandes.component';
@@ -13,7 +14,10 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
 
 const routes: Routes = [
   {path:"",redirectTo:'login',pathMatch:'full'},
-  {path:'login',component:LoginComponent},
+  {path:'login',component:LoginComponent}, 
+  {path:'mot de passe oublié!' , component:ResetpasswordComponent}, 
+
+  
   { path:'home',component:HomeComponent,
   children:[
     {path:'tableau de bord',component:DashboardComponent},

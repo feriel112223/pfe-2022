@@ -1,6 +1,6 @@
 <ng-template #content let-modal>
   <div class="modal-header">
-    <h6 class="modal-title" id="modal-basic-title">Détails du demande</h6>
+    <h6 class="modal-title" id="modal-basic-title">Détails de l'employé</h6>
     <button
       type="button"
       class="btn-close"
@@ -79,7 +79,7 @@
             />{{ radiobutton.name }} &nbsp; &nbsp; &nbsp;
           </label>
         </div>
-      </div>      
+      </div>
 
       <div
         class="form-group"
@@ -116,6 +116,7 @@
         />
         <span class="form-bar"></span>
       </div>
+
       <div
         class="form-group"
         [ngClass]="{
@@ -133,8 +134,6 @@
         />
         <span class="form-bar"></span>
       </div>
-      
-      
 
       <!-- <button (click)="postEmployeeDetails()" *ngIf="showAdd" class="btn btn-success" data-bs-dismiss="modal"> Add </button>
                    <button (click)="updateEmployeeDetails()" *ngIf="showUpdate" class="btn btn-info" data-bs-dismiss="modal"> Update</button>
@@ -151,12 +150,20 @@
       Annuler
     </button>
     <button
-      
       class="btn btn-primary btn-round waves-effect waves-light"
       (click)="postEmployeeDetails()"
+      *ngIf="showAdd"
       type="submit"
     >
       enregistrer
+    </button>
+    <button
+      (click)="updateEmployeeDetails()"
+      *ngIf="showUpdate"
+      class="btn btn-primary btn-round waves-effect waves-light"
+      data-bs-dismiss="modal"
+    >
+      Enregistrer
     </button>
   </div>
 </ng-template>
@@ -235,9 +242,13 @@
             <th>Nom</th>
             <th>Prénom</th>
             <th>Sexe</th>
-            <th>date de naissance</th>
+            <th>Date de naissance</th>
             <th>E-mail</th>
+            <th>Mot de passe</th>
+            <th>Grade</th>
+            <th>Salaire</th>
             <th>Num de télephone</th>
+
             <th>Action</th>
           </tr>
         </thead>
@@ -248,33 +259,25 @@
             <td>{{ employee.cin }}</td>
             <td>{{ employee.Nom }}</td>
             <td>{{ employee.Prenom }}</td>
-            <td>{{ employee.Sexe }}</td>
+            <td>{{ employee.sexe }}</td>
             <td>{{ employee.date_nais }}</td>
             <td>{{ employee.email }}</td>
+            <td>{{ employee.mot_de_passe }}</td>
+            <td>{{ employee.grade }}</td>
+            <td>{{ employee.salaire }}</td>
             <td>{{ employee.tel }}</td>
-            
-            
-          </tr>
-          <tr>
-            <th scope="row">1</th>
-            <td>12365478</td>
-            <td>juliette</td>
-            <td>Thornton</td>
-            <td>femme</td>
-
-            <td>21/04/1689</td>
-            <td>@fat</td>
-            <td>21321245</td>
-            
             <td>
               <button
                 style="color: aliceblue"
                 class="btn btn-info btn-round waves-effect waves-light"
+                (click)="openModal(content)"
+                (click)="onUpdate(employee)"
               >
                 Modifier
               </button>
               <button
                 class="btn btn-danger mx-3 btn-round waves-effect waves-light"
+                (click)="deleteEmployee(employee)"
               >
                 Supprimer
               </button>

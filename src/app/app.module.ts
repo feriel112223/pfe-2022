@@ -21,6 +21,7 @@ import { FicheDePaiesComponent } from './dashboards/fiche-de-paies/fiche-de-paie
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { ResetpasswordComponent } from './Auth/resetpassword/resetpassword.component';
 
 
 
@@ -38,6 +39,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     CalendrierDeTravailComponent,
     ListeCongesComponent,
     FicheDePaiesComponent,
+    ResetpasswordComponent,
     
     
   
