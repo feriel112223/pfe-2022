@@ -31,8 +31,10 @@
                 <div class="navbar-container container-fluid">
                     <ul class="nav-left">
                         <li>
-                            <div class="sidebar_toggle"><a href=""><i class="ti-menu"></i></a></div>
+                            <div class="sidebar_toggle">
+                                <a  ><i class="ti-menu"></i></a></div>
                         </li>
+
                         <li class="header-search">
                             <div class="main-search morphsearch-search">
                                 <div class="input-group">
@@ -43,20 +45,29 @@
                             </div>
                         </li>
                         <li>
-                            <a  onclick="javascript:toggleFullScreen()" class="waves-effect waves-light">
+                            <a  onclick="document.documentElement.requestFullscreen()" class="waves-effect waves-light">
                                 <i class="ti-fullscreen"></i>
                             </a>
                         </li>
                     </ul>
                     <ul class="nav-right">
                         <li class="header-notification">
-                            <a   class="waves-effect waves-light">
+                            <a (click)="toggleDropDownN()"   class="waves-effect waves-light">
                                 <i class="ti-bell"></i>
                                 <span class="badge bg-c-red"></span>
                             </a>
-                            <ul class="show-notification">
+                            <ul class="show-notification" [ngStyle]="{'display': dropDownNotification}">
                                 <li>
-                                    <h6>Notifications</h6>
+                                    <h4>Notifications</h4>
+                                </li>
+                                <li class="waves-effect waves-light">
+                                    <h6> 1111</h6>
+                                </li>
+                                <li class="waves-effect waves-light">
+                                    <h6> 2222</h6>
+                                </li>
+                                <li class="waves-effect waves-light">
+                                    <h6> 3333</h6>
                                 </li>
                             </ul>
                         </li>
@@ -69,27 +80,18 @@
                             <ul class="show-notification profile-notification" [ngStyle]="{'display': dropDownProfil}">
                                 <li class="waves-effect waves-light">
                                     <a href="#!">
-                                        <i class="ti-settings"></i> Settings
+                                        <i class="ti-settings"></i> paramétres
                                     </a>
                                 </li>
                                 <li class="waves-effect waves-light">
                                     <a href="user-profile.html">
-                                        <i class="ti-user"></i> Profile
+                                        <i class="ti-user"></i> Mon profile
                                     </a>
                                 </li>
-                                <li class="waves-effect waves-light">
-                                    <a href="email-inbox.html">
-                                        <i class="ti-email"></i> My Messages
-                                    </a>
-                                </li>
-                                <li class="waves-effect waves-light">
-                                    <a href="auth-lock-screen.html">
-                                        <i class="ti-lock"></i> Lock Screen
-                                    </a>
-                                </li>
-                                <li class="waves-effect waves-light">
-                                    <a href="auth-normal-sign-in.html">
-                                        <i class="ti-layout-sidebar-left"></i> Logout
+                                
+                                <li class="waves-effect waves-light" routerLinkActive="active">
+                                    <a routerLink="/login">
+                                        <i class="ti-layout-sidebar-left"></i> Déconnexion 
                                     </a>
                                 </li>
                             </ul>

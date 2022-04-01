@@ -22,7 +22,14 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { ResetpasswordComponent } from './Auth/resetpassword/resetpassword.component';
-
+import { FullCalendarModule } from '@fullcalendar/angular'; 
+import interactionPlugin from '@fullcalendar/interaction';
+import dayGridPlugin from '@fullcalendar/daygrid';
+ 
+FullCalendarModule.registerPlugins([ 
+  interactionPlugin,
+  dayGridPlugin
+]);
 
 
 
@@ -54,7 +61,8 @@ import { ResetpasswordComponent } from './Auth/resetpassword/resetpassword.compo
     Ng2SearchPipeModule,
     FormsModule,
     ToastrModule.forRoot(),
-    NgbModule
+    NgbModule,
+    FullCalendarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
