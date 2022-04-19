@@ -112,6 +112,7 @@
           name="footer-email"
           formControlName="email"
           class="form-control"
+          pattern=".+@globex\.com" size="30" 
           required=""
         />
         <span class="form-bar"></span>
@@ -126,10 +127,11 @@
       >
         <label class="float-label"><h6>Numéro de téléphone</h6></label>
         <input
-          type="number"
+          type="tel"
           name="footer-tel"
           formControlName="tel"
           class="form-control"
+          pattern="[0-9]{2}-[0-9]{3}-[0-9]{3}"
           required=""
         />
         <span class="form-bar"></span>

@@ -22,15 +22,11 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { ResetpasswordComponent } from './Auth/resetpassword/resetpassword.component';
-import { FullCalendarModule } from '@fullcalendar/angular'; 
-import interactionPlugin from '@fullcalendar/interaction';
-import dayGridPlugin from '@fullcalendar/daygrid';
- 
-FullCalendarModule.registerPlugins([ 
-  interactionPlugin,
-  dayGridPlugin
-]);
-
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { CommonModule } from '@angular/common';
+import { FlatpickrModule } from 'angularx-flatpickr';
+import { AngularDigitalClockModule } from 'angular-digital-clock';
 
 
 @NgModule({
@@ -62,7 +58,17 @@ FullCalendarModule.registerPlugins([
     FormsModule,
     ToastrModule.forRoot(),
     NgbModule,
-    FullCalendarModule
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
+    }),
+    CommonModule,
+    FlatpickrModule.forRoot(),
+    AngularDigitalClockModule,
+
+
+    
+   
   ],
   providers: [],
   bootstrap: [AppComponent]

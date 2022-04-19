@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './Auth/login/login.component';
 import { ResetpasswordComponent } from './Auth/resetpassword/resetpassword.component';
 import { CalendrierDeTravailComponent } from './dashboards/calendrier-de-travail/calendrier-de-travail.component';
+import { ClockComponent } from './dashboards/clock/clock.component';
 import { DashboardComponent } from './dashboards/dashboard/dashboard.component';
 import { DemandesComponent } from './dashboards/demandes/demandes.component';
 import { EmloyeeComponent } from './dashboards/emloyee/emloyee.component';
@@ -25,7 +26,8 @@ const routes: Routes = [
     {path:'employee',component:EmloyeeComponent},
     {path:'calendrier de travail',component:CalendrierDeTravailComponent},
     {path:'liste des conges',component:ListeCongesComponent},
-    {path:'fiche de paies',component:FicheDePaiesComponent}
+    {path:'fiche de paies',component:FicheDePaiesComponent},
+    {path:'clock',component:ClockComponent}
     
   ],
 },

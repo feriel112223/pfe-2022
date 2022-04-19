@@ -1,6 +1,6 @@
 <ng-template #content let-modal>
   <div class="modal-header">
-    <h6 class="modal-title" id="modal-basic-title">Détails du demande </h6>
+    <h6 class="modal-title" id="modal-basic-title">Détails du demande</h6>
     <button
       type="button"
       class="btn-close"
@@ -9,13 +9,15 @@
     ></button>
   </div>
   <div class="modal-body">
-    <form [formGroup]="formDemande">
+    <form [formGroup]="formDemande" >
       <div
         class="form-group"
         [ngClass]="{
           ' form-success': formDemande.get('Nom')?.valid,
           'form-danger': formDemande.get('Nom')?.invalid
         }"
+
+        
       >
         <label class="float-label"><h6>Nom :</h6></label>
         <input
@@ -33,6 +35,8 @@
           ' form-success': formDemande.get('Prenom')?.valid,
           'form-danger': formDemande.get('Prenom')?.invalid
         }"
+
+       
       >
         <label class="float-label"><h6>Prénom :</h6></label>
 
@@ -83,9 +87,10 @@
                   ' form-success': congeForm.get('date_debut')?.valid,
                   'form-danger': congeForm.get('date_debut')?.invalid
                 }"
+                
               >
-              <label class="float-label"><h6>Date de début :</h6></label>
-              <input
+                <label class="float-label"><h6>Date de début :</h6></label>
+                <input
                   type="date"
                   name="footer-date_debut"
                   formControlName="date_debut"
@@ -100,10 +105,11 @@
                   ' form-success': congeForm.get('date_fin')?.valid,
                   'form-danger': congeForm.get('date_fin')?.invalid
                 }"
+                
               >
-              <label class="float-label"><h6>Date de fin :</h6></label>
+                <label class="float-label"><h6>Date de fin :</h6></label>
 
-              <input
+                <input
                   type="date"
                   name="footer-date_fin"
                   formControlName="date_fin"
@@ -140,9 +146,8 @@
                 'form-danger': autorisationForm.get('heure_debut')?.invalid
               }"
             >
-
-            <label class="float-label"><h6>Heure de début :</h6></label>
-            <input
+              <label class="float-label"><h6>Heure de début :</h6></label>
+              <input
                 type="time"
                 name="footer-heure_debut"
                 formControlName="heure_debut"
@@ -158,8 +163,8 @@
                 'form-danger': autorisationForm.get('heure_fin')?.invalid
               }"
             >
-            <label class="float-label"><h6>Heure de fin :</h6></label>
-            <input
+              <label class="float-label"><h6>Heure de fin :</h6></label>
+              <input
                 type="time"
                 name="footer-heure_fin"
                 formControlName="heure_fin"
@@ -266,14 +271,13 @@
         data-bs-target="#exampleModal"
         class="btn btn-primary btn-round text-center"
         type="submit"
-        
       >
         Chercher
       </button>
     </form>
     <div class="ml-auto p-2">
       <button
-      (click)="openModal(content)"
+        (click)="openModal(content)"
         type="button"
         data-bs-toggle="modal"
         data-bs-target="#exampleModal"
@@ -283,8 +287,6 @@
       </button>
     </div>
   </div>
-
-
 
   <div class="card-block table-border-style">
     <div class="table-responsive">
@@ -314,12 +316,11 @@
 
             <td>
               <button
-                class="btn btn-success mx-3 btn-round waves-effect waves-light" 
+                class="btn btn-success mx-3 btn-round waves-effect waves-light"
               >
                 Accepter
               </button>
-              <button class="btn btn-info btn-round waves-effect waves-light"
-              >
+              <button class="btn btn-info btn-round waves-effect waves-light">
                 Reffuser
               </button>
               <button
@@ -329,8 +330,8 @@
                 Supprimer
               </button>
               <button
-                class="btn btn-warn mx-3 btn-round waves-effect waves-light" 
-                (click)="onUpdate(demande)" 
+                class="btn btn-warn mx-3 btn-round waves-effect waves-light"
+                (click)="onUpdate(demande)"
               >
                 Modifier
               </button>

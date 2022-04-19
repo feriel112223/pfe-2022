@@ -35,7 +35,8 @@
               "src/assets/icon/font-awesome/css/font-awesome.min.css",
               "src/assets/css/jquery.mCustomScrollbar.css",
               "src/assets/css/style.css",
-              "node_modules/ngx-toastr/toastr.css"
+              "node_modules/ngx-toastr/toastr.css",
+              "node_modules/angular-digital-clock/src/assets/fonts.scss"
               
 
             ],

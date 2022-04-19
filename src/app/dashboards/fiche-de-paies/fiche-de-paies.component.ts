@@ -11,5 +11,6 @@ export class FicheDePaiesComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  
 
 }
