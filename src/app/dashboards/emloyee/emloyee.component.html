@@ -144,29 +144,14 @@
   </div>
   <div class="modal-footer">
     <button
-      type="button"
-      class="btn btn-secondary btn-round waves-effect waves-light"
-      (click)="close()"
-      data-dismiss="modal"
-    >
-      Annuler
-    </button>
-    <button
       class="btn btn-primary btn-round waves-effect waves-light"
       (click)="postEmployeeDetails()"
       *ngIf="showAdd"
       type="submit"
-    >
-      enregistrer
-    </button>
-    <button
-      (click)="updateEmployeeDetails()"
-      *ngIf="showUpdate"
-      class="btn btn-primary btn-round waves-effect waves-light"
-      data-bs-dismiss="modal"
+      data-dismiss="modal"
     >
       Enregistrer
-    </button>
+    </button>  
   </div>
 </ng-template>
 
