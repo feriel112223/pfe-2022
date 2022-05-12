@@ -15,8 +15,8 @@ export class EmloyeeComponent implements OnInit {
   showForm=false;
   model2 = { option: '' };
   radioItems2: any;
-  showAdd!: boolean;
-  showUpdate !: boolean;
+  showAdd: boolean = false;
+  showUpdate : boolean = false;
   
    constructor(private employeesServ:EmployeeService ,private formbuilder:FormBuilder,private toastr: ToastrService,
     private modalService: NgbModal) {
@@ -38,10 +38,11 @@ export class EmloyeeComponent implements OnInit {
         Validators.pattern('^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]{0,10})*@[A-Za-z0-9]+(\\.[A-Za-z0-9]{0,10})*(\\.[A-Za-z]{0,5})$'),
         Validators.required])],
        mot_de_passe:['',Validators.required], 
-       grade:['',Validators.required],
-       salaire:['',Validators.required], 
-
+       grade:['', Validators.required],
+       salaire:['',Validators.required],
        tel :['',Validators.required],
+       ncnss:['', Validators.required],
+
      })
      this.getAllEmployee();
     }
@@ -51,12 +52,13 @@ export class EmloyeeComponent implements OnInit {
       //this.employees=this.employeesServ.getAllEmployees();
       
    }
-   clickAddEmployee(){
+   clickAddEmployee(content:any){
       this.showForm= !this.showForm;
 
       this.formEmployee.reset();
       this.showAdd = true;
       this.showUpdate = false;
+      this.openModal(content)
    }
    close(){
     this.showForm= !this.showForm;
@@ -86,14 +88,14 @@ export class EmloyeeComponent implements OnInit {
      this.employeesServ.postEmployee(this.formEmployee.value)
     .subscribe(res=>{
       console.log(res);
-      this.toastr.success('Employé  ajouté avec succée ');
+      alert("Employé ajouté avec succé!");
       let ref = document.getElementById('cancel')
       ref?.click();
       this.formEmployee.reset();
       return this.getAllEmployee();
     },
     err=>{
-      this.toastr.error('Il y a un problém ');
+      alert("Il y'a un problèm!");
     }
     )
    }
@@ -112,24 +114,28 @@ export class EmloyeeComponent implements OnInit {
   deleteEmployee(employee : any){
     this.employeesServ.deleteEmployee(employee.id)
     .subscribe(res=>{
-      alert("Employee Deleted !");
+      alert('Employé  supprimé !');
+     
       this.getAllEmployee();
     })
   }
-  onUpdate(employee : any){
+  onUpdate(employee : any , content:any){
     this.showAdd = false;
+    this.openModal(content)
     this.showUpdate = true;
-    
-    this.employees.id = this.employees.id;
-    this.formEmployee.controls['cin'].setValue(this.employees.cin);
-    this.formEmployee.controls['Nom'].setValue(this.employees.Nom);
-    this.formEmployee.controls['Prenom'].setValue(this.employees.Prenom);
-    this.formEmployee.controls['sexe'].setValue(this.employees.sexe);
-    this.formEmployee.controls['date_nais'].setValue(this.employees.date_nais);
-    this.formEmployee.controls['email'].setValue(this.employees.email);
-    this.formEmployee.controls['tel'].setValue(this.employees.tel);
-    this.formEmployee.controls['grade'].setValue(this.employees.grade);
-    this.formEmployee.controls['salaire'].setValue(this.employees.salire);
+    this.formEmployee.controls['cin'].setValue(employee.cin);
+    this.formEmployee.controls['Nom'].setValue(employee.Nom);
+    this.formEmployee.controls['Prenom'].setValue(employee.Prenom);
+    this.formEmployee.controls['sexe'].setValue(employee.sexe);
+    this.formEmployee.controls['date_nais'].setValue(employee.date_nais);
+    this.formEmployee.controls['email'].setValue(employee.email);
+    this.formEmployee.controls['mot_de_passe'].setValue(employee.mot_de_passe);
+    this.formEmployee.controls['tel'].setValue(employee.tel);
+    this.formEmployee.controls['grade'].setValue(employee.grade);
+    this.formEmployee.controls['salaire'].setValue(employee.salaire);
+    this.formEmployee.controls['ncnss'].setValue(employee.ncnss);
+
+
    
   }
   updateEmployeeDetails(){
@@ -139,16 +145,22 @@ export class EmloyeeComponent implements OnInit {
     this.employees.sexe = this.formEmployee.value.sexe;
     this.employees.date_nais = this.formEmployee.value.date_nais;
     this.employees.email = this.formEmployee.value.email;
+    this.employees.mot_de_passe = this.formEmployee.value.mot_de_passe;    
     this.employees.tel = this.formEmployee.value.tel;
-    
+    this.employees.grade = this.formEmployee.value.grade;
+    this.employees.salaire = this.formEmployee.value.salaire;
+    this.employees.ncnss = this.formEmployee.value.ncnss;
 
     this.employees.updateEmployee(this.employees,this.employees.id)
     .subscribe((res : any)=>{
-      alert("Update successfully ! ");
+      alert("Employé modifié avec succée ! ");
       let ref = document.getElementById('cancel')
       ref?.click();
       this.formEmployee.reset();
       this.getAllEmployee();
+    },
+    (err:any)=>{
+      alert("Il y'a un problèm!");
     })
 
   }

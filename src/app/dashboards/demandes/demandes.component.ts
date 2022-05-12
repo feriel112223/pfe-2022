@@ -19,8 +19,8 @@ export class DemandesComponent implements OnInit {
   formDemande: FormGroup;
   autorisationForm: FormGroup;
   congeForm: FormGroup;
-  showAdd!: boolean;
-  showUpdate !: boolean;
+  showAdd: boolean= false;
+  showUpdate : boolean = false ;
   showForm: any;
   constructor(
     private demandesServ: DemandesService,

@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  private path ="http://127.0.0.1:8000/api/Employes";
+  private path ="http://127.0.0.1:8000/api/";
   email : string = '';
 
   constructor(private http:HttpClient) { }
@@ -21,7 +21,7 @@ export class AuthService {
   }
   // forgot password
   forgotPassword(){
-    
+
   }
 
 

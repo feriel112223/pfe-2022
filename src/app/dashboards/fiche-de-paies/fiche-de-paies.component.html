@@ -1,117 +1,151 @@
-<div class="page-header">
-    <div class="page-block">
-        <div class="row align-items-center">
-            <div class="col-md-8">
-                <div class="page-header-title">
-                    <h5 class="m-b-10">Fiche de paies  </h5>
-                    <p class="m-b-0">Welcome </p>
-                    
-                </div>
-            </div>
-            <div class="col-md-4">
-                <ul class="breadcrumb-title">
-                    <li class="breadcrumb-item">
-                        <a routerLink="/home"> <i class="fa fa-home"></i> </a>
-                    </li>
-                    <li class="breadcrumb-item"><a href="#!"></a>
-                    </li>
-                </ul>
-            </div>
+<div id="print-section">
+  <div class="card" style="border: solid">
+    <div class="card-header">
+
+      <form>
+        <div class="card-block table-border-style">
+          <table style="float: left">
+            <tr>
+              <td>Nom :  </td>
+              <td>
+                <input type="text" class="form-control" id="exampleInputNom" />
+              </td>
+            </tr>
+            <tr>
+              <td>Prénom :  </td>
+              <td>
+                <input type="text" class="form-control" id="exampleInputPrenom" />
+              </td>
+            </tr>
+            <tr>
+              <td>Grade :  </td>
+              <td>
+                <input type="text" class="form-control" id="exampleInputgrade" />
+              </td>
+            </tr>
+            <tr>
+              <td>N°CIN :  </td>
+              <td>
+                <input type="text" class="form-control" id="exampleInputcin" />
+              </td>
+            </tr>
+            <tr>
+              <td>N°CNSS / N°CNRPS :  </td>
+              <td>
+                <input type="text" class="form-control" id="exampleInputncnss" />
+              </td>
+            </tr>
+          </table>
+          <table style="float: right">
+            <tr>
+              <td>Nombre des heures de travail :  </td>
+              <td>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="exampleInputnbheure"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>Solde de congé :  </td>
+              <td>
+                <input type="text" class="form-control" id="exampleInputsconge" />
+              </td>
+            </tr>
+            <tr>
+              <td>Solde acqui :  </td>
+              <td>
+                <input type="text" class="form-control" id="exampleInputsacqui" />
+              </td>
+            </tr>
+            <tr>
+              <td>Congé du mois :  </td>
+              <td>
+                <input type="text" class="form-control" id="exampleInputcmois" />
+              </td>
+            </tr>
+            <tr>
+              <td>Solde actuel :  </td>
+              <td>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="exampleInputsactuel"
+                />
+              </td>
+            </tr>
+          </table>
         </div>
-    </div>
-</div>
-<div class="card">
-    <div class="card-header" >
-        <form>
-            <input id="impression" name="impression"  type="button"  value="Imprimer cette page" />          </form>
-        <div class="card-block table-border-style"  >
-            <div class="card-block table-border-style" 
-            style="float:left" >
-                <h5>Nom : 
-                    <br/> Prénom : 
-                    <br/> Grade : 
-                    <br/> N° CIN :
-                    <br/> N° CNSS : 
-                     
-
- 
-                </h5>
-           
-            </div>
-            <br/>
-            <div class="card-block table-border-style" style="float:right"  >
-                <h5>
-                     Salaire : 
-                    <br/> Nombre des heures de travail  :
-                    <br/> Solde de congés : 
-                    <br/> Solde aquis : 
-                    <br/> Congés du mois :
-                    <br/> Solde actuel : 
- 
-
-
- 
-                </h5>
-                
-           
-            </div>
-           
-        </div>
-        
-        
+      </form>
     </div>
     <div class="card-block table-border-style">
-        <div class="table-responsive">
-            <table class="table">
-                <thead>
-                    <tr class="table-success">
-                        <th>Code</th>
-                        <th>Base </th>
-                        <th>Congés</th>
-                        <th>Crédits </th>
-                        <th>totale</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr >                        
-                        <th scope="row">1</th>
-                        <td></td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                        <td>@mdo</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                        <td>@mdo</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">4</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                        <td>@mdo</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">5</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                        <td>@mdo</td>
-                    </tr>
-                    
-                    
-                </tbody>
-            </table>
-        </div>
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr class="table-success">
+              <th>Code</th>
+              <th>Base</th>
+              <th>Congés</th>
+              <th>Crédits</th>
+              <th>totale</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td></td>
+              <td>Otto</td>
+              <td>@mdo</td>
+              <td>@mdo</td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>Jacob</td>
+              <td>Thornton</td>
+              <td>@fat</td>
+              <td>@mdo</td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>Larry</td>
+              <td>the Bird</td>
+              <td>@twitter</td>
+              <td>@mdo</td>
+            </tr>
+            <tr>
+              <th scope="row">4</th>
+              <td>Larry</td>
+              <td>the Bird</td>
+              <td>@twitter</td>
+              <td>@mdo</td>
+            </tr>
+            <tr>
+              <th scope="row">5</th>
+              <td>Larry</td>
+              <td>the Bird</td>
+              <td>@twitter</td>
+              <td>@mdo</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
+  </div>
+	
 </div>
+<button printTitle="Fiche de paie" printSectionId="print-section" ngxPrint class="btn btn-round waves-effect waves-light" style="background-color: pink"
+>
+  Imprimer
+</button>
+
+
+
+
+
+
+
+
+
+
+

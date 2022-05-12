@@ -119,6 +119,25 @@
       </div>
 
       <div
+      class="form-group"
+      [ngClass]="{
+        ' form-success': formEmployee.get('mot_de_passe')?.valid,
+        'form-danger': formEmployee.get('mot_de_passe')?.invalid
+      }"
+    >
+      <label class="float-label"><h6>Mot de passe </h6></label>
+      <input
+        type="mot_de_passe"
+        name="footer-mot_de_passe"
+        formControlName="mot_de_passe"
+        class="form-control"
+        size="30" 
+        required=""
+      />
+      <span class="form-bar"></span>
+    </div>
+
+      <div
         class="form-group"
         [ngClass]="{
           ' form-success': formEmployee.get('tel')?.valid,
@@ -136,6 +155,57 @@
         />
         <span class="form-bar"></span>
       </div>
+      <div
+        class="form-group"
+        [ngClass]="{
+          ' form-success': formEmployee.get('ncnss')?.valid,
+          'form-danger': formEmployee.get('ncnss')?.invalid
+        }"
+      >
+        <label class="float-label"><h6>N°CNSS / N°CNRPS : </h6></label>
+        <input
+          type="text"
+          name="footer-ncnss"
+          formControlName="ncnss"
+          class="form-control"
+          required=""
+        />
+        <span class="form-bar"></span>
+      </div>
+      <div
+        class="form-group"
+        [ngClass]="{
+          ' form-success': formEmployee.get('grade')?.valid,
+          'form-danger': formEmployee.get('grade')?.invalid
+        }"
+      >
+        <label class="float-label"><h6>Grade</h6></label>
+        <input
+          type="grade"
+          name="footer-grade"
+          formControlName="grade"
+          class="form-control"
+          required=""
+        />
+        <span class="form-bar"></span>
+      </div>
+      <div
+        class="form-group"
+        [ngClass]="{
+          ' form-success': formEmployee.get('salaire')?.valid,
+          'form-danger': formEmployee.get('salaire')?.invalid
+        }"
+      >
+        <label class="float-label"><h6>Salaire</h6></label>
+        <input
+          type="salaire"
+          name="footer-salaire"
+          formControlName="salaire"
+          class="form-control"
+          required=""
+        />
+        <span class="form-bar"></span>
+      </div>
 
       <!-- <button (click)="postEmployeeDetails()" *ngIf="showAdd" class="btn btn-success" data-bs-dismiss="modal"> Add </button>
                    <button (click)="updateEmployeeDetails()" *ngIf="showUpdate" class="btn btn-info" data-bs-dismiss="modal"> Update</button>
@@ -144,14 +214,31 @@
   </div>
   <div class="modal-footer">
     <button
+      type="button"
+      class="btn btn-secondary btn-round waves-effect waves-light"
+      (click)="close()"
+      data-dismiss="modal"
+    >
+      Annuler
+    </button>
+    <button
       class="btn btn-primary btn-round waves-effect waves-light"
       (click)="postEmployeeDetails()"
       *ngIf="showAdd"
       type="submit"
       data-dismiss="modal"
     >
-      Enregistrer
+      Enregistrer 
     </button>  
+    <button
+      (click)="updateEmployeeDetails()"
+      *ngIf="showUpdate"
+      class="btn btn-primary btn-round waves-effect waves-light"
+      data-bs-dismiss="modal"
+      type="submit"
+    >
+      Enregistrer
+    </button>
   </div>
 </ng-template>
 
@@ -208,7 +295,7 @@
     </form>
     <div class="ml-auto p-2">
       <button
-        (click)="openModal(content)"
+        (click)="clickAddEmployee(content)"
         type="button"
         data-bs-toggle="modal"
         data-bs-target="#exampleModal"
@@ -224,7 +311,7 @@
       <table class="table">
         <thead>
           <tr>
-            <th>ID</th>
+            
             <th>Cin</th>
             <th>Nom</th>
             <th>Prénom</th>
@@ -233,6 +320,7 @@
             <th>E-mail</th>
             <th>Mot de passe</th>
             <th>Grade</th>
+            <th>N°CNSS / N°CNRPS</th>
             <th>Salaire</th>
             <th>Num de télephone</th>
 
@@ -242,7 +330,7 @@
 
         <tbody>
           <tr class="table-active" *ngFor="let employee of employees">
-            <th scope="row"></th>
+            
             <td>{{ employee.cin }}</td>
             <td>{{ employee.Nom }}</td>
             <td>{{ employee.Prenom }}</td>
@@ -251,14 +339,14 @@
             <td>{{ employee.email }}</td>
             <td>{{ employee.mot_de_passe }}</td>
             <td>{{ employee.grade }}</td>
+            <td>{{ employee.ncnss}}</td>
             <td>{{ employee.salaire }}</td>
             <td>{{ employee.tel }}</td>
             <td>
               <button
                 style="color: aliceblue"
                 class="btn btn-info btn-round waves-effect waves-light"
-                (click)="openModal(content)"
-                (click)="onUpdate(employee)"
+                (click)="onUpdate(employee,content)"
               >
                 Modifier
               </button>

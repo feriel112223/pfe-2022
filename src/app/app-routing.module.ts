@@ -16,17 +16,17 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
 const routes: Routes = [
   {path:"",redirectTo:'login',pathMatch:'full'},
   {path:'login',component:LoginComponent}, 
-  {path:'mot de passe oublié!' , component:ResetpasswordComponent}, 
+  {path:'mot_de_passe_oublie' , component:ResetpasswordComponent}, 
 
   
   { path:'home',component:HomeComponent,
   children:[
-    {path:'tableau de bord',component:DashboardComponent},
+    {path:'tableau_de_bord',component:DashboardComponent},
     {path:'demandes',component:DemandesComponent},
     {path:'employee',component:EmloyeeComponent},
-    {path:'calendrier de travail',component:CalendrierDeTravailComponent},
-    {path:'liste des conges',component:ListeCongesComponent},
-    {path:'fiche de paies',component:FicheDePaiesComponent},
+    {path:'calendrier_de_travail',component:CalendrierDeTravailComponent},
+    {path:'liste_des_conges',component:ListeCongesComponent},
+    {path:'fiche_de_paies',component:FicheDePaiesComponent},
     {path:'clock',component:ClockComponent}
     
   ],

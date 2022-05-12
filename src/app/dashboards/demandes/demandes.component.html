@@ -208,6 +208,7 @@
       class="btn btn-primary btn-round waves-effect waves-light"
       (click)="saveDemandes()"
       *ngIf="showAdd"
+
       type="submit"
     >
       Ajouter
@@ -281,7 +282,7 @@
         type="button"
         data-bs-toggle="modal"
         data-bs-target="#exampleModal"
-        class="btn btn-primary btn-round"
+        class="btn waves-effect waves-light btn-primary btn-round "
       >
         + Nouvelle demande
       </button>
@@ -316,25 +317,28 @@
 
             <td>
               <button
-                class="btn btn-success mx-3 btn-round waves-effect waves-light"
+                class="btn  waves-effect waves-light btn-warn btn-round"  >
+                En cours
+              </button>
+              <button
+                class="btn waves-effect waves-light btn-success btn-round"
               >
                 Accepter
               </button>
-              <button class="btn btn-info btn-round waves-effect waves-light">
+              <button class="btn  waves-effect waves-light btn-info btn-round">
                 Reffuser
               </button>
               <button
-                class="btn btn-danger mx-3 btn-round waves-effect waves-light"
+                class="btn mx-3 waves-effect waves-light btn-danger btn-round"
                 (click)="deleteDemande(demande)"
               >
                 Supprimer
               </button>
-              <button
-                class="btn btn-warn mx-3 btn-round waves-effect waves-light"
-                (click)="onUpdate(demande)"
-              >
-                Modifier
+              <button class="btn waves-effect waves-light btn-secondary btn-round">
+                Archiver
               </button>
+              
+              
             </td>
           </tr>
         </tbody>

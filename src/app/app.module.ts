@@ -27,8 +27,8 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { CommonModule } from '@angular/common';
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { AngularDigitalClockModule } from 'angular-digital-clock';
-
-
+import { ChartsModule } from 'ng2-charts';
+import {NgxPrintModule} from 'ngx-print';
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,6 +65,9 @@ import { AngularDigitalClockModule } from 'angular-digital-clock';
     CommonModule,
     FlatpickrModule.forRoot(),
     AngularDigitalClockModule,
+    ChartsModule,
+    NgxPrintModule
+   
 
 
     

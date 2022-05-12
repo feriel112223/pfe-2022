@@ -19,10 +19,28 @@
         </div>
     </div>
 </div>
-
-<h4>dashboard workes!</h4>
-<p>
-    soldes des congés + solde de retard + nb des heures de travail
-</p>
+<div class="chart-wrapper" style="margin-top: 5%; margin-left: 5%">
+    <div class="chart-wrapper" style="width: 45%; display: block;float: left;float: inline-start">
+        <canvas baseChart 
+            [datasets]="lineChartData" 
+            [labels]="lineChartLabels" 
+            [options]="lineChartOptions"
+            [colors]="lineChartColors" 
+            [legend]="lineChartLegend" 
+            [chartType]="lineChartType" 
+            [plugins]="lineChartPlugins">
+        </canvas>
+    </div>
+    <div class="chart-wrapper" style="width: 45%; display: block; float: right; float:inline-end">
+        <canvas baseChart 
+        [data]="pieChartData" 
+        [labels]="pieChartLabels" 
+        [chartType]="pieChartType"
+        [options]="pieChartOptions"
+        [plugins]="pieChartPlugins"
+        [legend]="pieChartLegend">
+      </canvas>
+    </div>
+</div>
 
             
