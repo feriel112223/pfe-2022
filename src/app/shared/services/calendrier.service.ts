@@ -11,12 +11,12 @@ export class CalendrierService {
 
   constructor(private http : HttpClient) { }
   postEvent(data: any) : Observable<any>{
-    return this.http.post<any>(this.path + "/" , data);
+    return this.http.post<any>(this.path + "/calenders" , data);
   }
   getEvent() : Observable<any> {
-    return this.http.get<any>(this.path + "/");
+    return this.http.get<any>(this.path + "/calenders");
   }
   deleteEvent(id: number) {
-    return this.http.delete<any>(this.path + "/Employes/"+id );
+    return this.http.delete<any>(this.path + "/calenders"+id );
   }
 }

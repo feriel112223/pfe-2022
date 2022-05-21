@@ -1,4 +1,4 @@
-<ng-template #content let-modal>
+<ng-template  #content let-modal>
   <div class="modal-header">
     <h6 class="modal-title" id="modal-basic-title">Détails de l'employé</h6>
     <button
@@ -27,6 +27,7 @@
         />
         <span class="form-bar"></span>
       </div>
+      
       <div
         class="form-group"
         [ngClass]="{
@@ -81,6 +82,7 @@
         </div>
       </div>
 
+      
       <div
         class="form-group"
         [ngClass]="{
@@ -155,23 +157,7 @@
         />
         <span class="form-bar"></span>
       </div>
-      <div
-        class="form-group"
-        [ngClass]="{
-          ' form-success': formEmployee.get('ncnss')?.valid,
-          'form-danger': formEmployee.get('ncnss')?.invalid
-        }"
-      >
-        <label class="float-label"><h6>N°CNSS / N°CNRPS : </h6></label>
-        <input
-          type="text"
-          name="footer-ncnss"
-          formControlName="ncnss"
-          class="form-control"
-          required=""
-        />
-        <span class="form-bar"></span>
-      </div>
+      
       <div
         class="form-group"
         [ngClass]="{
@@ -184,6 +170,23 @@
           type="grade"
           name="footer-grade"
           formControlName="grade"
+          class="form-control"
+          required=""
+        />
+        <span class="form-bar"></span>
+      </div>
+      <div
+        class="form-group"
+        [ngClass]="{
+          ' form-success': formEmployee.get('role')?.valid,
+          'form-danger': formEmployee.get('role')?.invalid
+        }"
+      >
+        <label class="float-label"><h6>role</h6></label>
+        <input
+          type="number"
+          name="footer-role"
+          formControlName="role"
           class="form-control"
           required=""
         />
@@ -320,7 +323,8 @@
             <th>E-mail</th>
             <th>Mot de passe</th>
             <th>Grade</th>
-            <th>N°CNSS / N°CNRPS</th>
+            <th>role</th>
+
             <th>Salaire</th>
             <th>Num de télephone</th>
 
@@ -339,7 +343,8 @@
             <td>{{ employee.email }}</td>
             <td>{{ employee.mot_de_passe }}</td>
             <td>{{ employee.grade }}</td>
-            <td>{{ employee.ncnss}}</td>
+            <td>{{ employee.role }}</td>
+
             <td>{{ employee.salaire }}</td>
             <td>{{ employee.tel }}</td>
             <td>

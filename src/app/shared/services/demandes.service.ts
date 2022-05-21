@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class DemandesService {
   demandes: any;
-  path ="http://localhost:3306";
+  path ="http://localhost:8000/api";
 
   constructor(private http: HttpClient) {
    
@@ -40,15 +40,15 @@ export class DemandesService {
  
 
   postDemande(data: any) {
-    return this.http.post<any>(this.path + "/demandes", data);
+    return this.http.post<any>(this.path + "/conges", data);
   }
   getAllDemande() {
-    return this.http.get<any>(this.path + "/demandes");
+    return this.http.get<any>(this.path + "/conges");
   }
   updateDemande(data: any, id: number) {
-    return this.http.put<any>(this.path + "/demandes/" + id, data);
+    return this.http.put<any>(this.path + "/conges/" + id, data);
   }
   deleteDemande(id: number) {
-    return this.http.delete<any>(this.path + "/demandes/"+ id);
+    return this.http.delete<any>(this.path + "/conges/"+ id);
   }
 }

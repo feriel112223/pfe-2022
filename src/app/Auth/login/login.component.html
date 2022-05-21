@@ -36,14 +36,14 @@
                                 </div>
                                 <div class="row m-t-30">
                                     <div class="col-md-12"   routerLinkActive="active"  routerLink="/home/clock"  >
-                                        <button type="button" class="btn btn-primary btn-md btn-block waves-effect waves-light text-center m-b-20" (click)="loginUser()" >Se connecter</button>
+                                        <button type="button" class="btn btn-primary btn-md btn-block waves-effect waves-light text-center m-b-20" (click)="loginUser()"  [disabled]="this.loginform.invalid" >Se connecter</button>
                                     </div>
                                 </div>
                                 <hr/>
                                 <div class="row">
                                     <div class="col-md-2">
-                                        <img src="assets/images/app-logo.jpg" class="img-radius">
-                                        <h6> Logo de l'application </h6>
+                                        <img src="assets/images/app-logo.jpg" class="img-radius" alt="Logo de l'application">
+                                        
                                     </div>
                                 </div>
                             </div>

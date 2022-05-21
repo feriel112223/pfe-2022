@@ -4,6 +4,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { EmployeeService } from 'src/app/shared/services/employee.service';
 
+
 @Component({
   selector: 'app-emloyee',
   templateUrl: './emloyee.component.html',
@@ -28,6 +29,7 @@ export class EmloyeeComponent implements OnInit {
       ];
       
      this.formEmployee  = this.formbuilder.group({
+       
 
        cin :['', Validators.required],
        Nom :['',Validators.required],
@@ -41,7 +43,8 @@ export class EmloyeeComponent implements OnInit {
        grade:['', Validators.required],
        salaire:['',Validators.required],
        tel :['',Validators.required],
-       ncnss:['', Validators.required],
+       role :['',Validators.required],
+       
 
      })
      this.getAllEmployee();
@@ -70,7 +73,21 @@ export class EmloyeeComponent implements OnInit {
  
  postEmployeeDetails()
    {
-    /* console.log(this.formEmployee.get('Nom')?.value);
+     console.log(this.formEmployee.value)
+    this.employeesServ.postEmployee(this.formEmployee.value)
+    .subscribe(res=>{
+      console.log(res);
+      this.toastr.success('Employé  ajouté avec succée ');
+      let ref = document.getElementById('cancel')
+      ref?.click();
+      this.formEmployee.reset();
+      return this.getAllEmployee();
+    },
+    err=>{
+      this.toastr.error('Il y a un problèm ');
+    }
+    )
+     /* console.log(this.formEmployee.get('Nom')?.value);
      console.log(this.formEmployee.get('Prenom')?.value);
      console.log(this.formEmployee.get('sexe')?.value);
      console.log(this.formEmployee.get('cin')?.value);
@@ -85,20 +102,9 @@ export class EmloyeeComponent implements OnInit {
      console.log(this.formEmployee.value);
       */
 
-     this.employeesServ.postEmployee(this.formEmployee.value)
-    .subscribe(res=>{
-      console.log(res);
-      alert("Employé ajouté avec succé!");
-      let ref = document.getElementById('cancel')
-      ref?.click();
-      this.formEmployee.reset();
-      return this.getAllEmployee();
-    },
-    err=>{
-      alert("Il y'a un problèm!");
-    }
-    )
-   }
+  }
+   
+    
    getAllEmployee(){
     this.employeesServ.getEmployee().subscribe((res : any)=>{
       this.employees = res;
@@ -133,7 +139,6 @@ export class EmloyeeComponent implements OnInit {
     this.formEmployee.controls['tel'].setValue(employee.tel);
     this.formEmployee.controls['grade'].setValue(employee.grade);
     this.formEmployee.controls['salaire'].setValue(employee.salaire);
-    this.formEmployee.controls['ncnss'].setValue(employee.ncnss);
 
 
    
@@ -149,7 +154,6 @@ export class EmloyeeComponent implements OnInit {
     this.employees.tel = this.formEmployee.value.tel;
     this.employees.grade = this.formEmployee.value.grade;
     this.employees.salaire = this.formEmployee.value.salaire;
-    this.employees.ncnss = this.formEmployee.value.ncnss;
 
     this.employees.updateEmployee(this.employees,this.employees.id)
     .subscribe((res : any)=>{

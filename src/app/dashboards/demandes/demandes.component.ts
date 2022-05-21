@@ -17,8 +17,7 @@ export class DemandesComponent implements OnInit {
   selectedConge: any;
   demandes: any;
   formDemande: FormGroup;
-  autorisationForm: FormGroup;
-  congeForm: FormGroup;
+  
   showAdd: boolean= false;
   showUpdate : boolean = false ;
   showForm: any;
@@ -29,32 +28,24 @@ export class DemandesComponent implements OnInit {
     private modalService: NgbModal
   ) {
     this.radioItems = [
-      { name: 'Congé', value: 'conge' },
-      { name: 'Autorisation', value: 'autorisation' },
-    ];
-    this.congeTypes = [
       { name: 'Conge solde', value: 'congeSolde' },
       { name: 'Conge sans solde', value: 'congeSansSolde' },
-   ];
+      { name: 'Autorisation', value: 'autorisation' },
 
-    this.autorisationForm = this.formbuilder.group({
+    ];
+
+   
+
+    this.formDemande = this.formbuilder.group({
+      ///Nom: ['', Validators.required],
+      ///Prenom: ['', Validators.required],
+      type_demande: ['', Validators.required],
+      date_debut: ['', Validators.required],
+      date_fin: ['', Validators.required],
       heure_debut: ['', Validators.required],
       heure_fin: ['', Validators.required],
       description: [null],
-    });
-    this.congeForm = this.formbuilder.group({
-      date_debut: ['', Validators.required],
-      date_fin: ['', Validators.required],
-      typeConge: ['', Validators.required],
-      description: [null],
-    });
-
-    this.formDemande = this.formbuilder.group({
-      Nom: ['', Validators.required],
-      Prenom: ['', Validators.required],
-      type: ['', Validators.required],
-      congeAut: this.autorisationForm,
-      conge: this.congeForm
+     
     });
   }
 
@@ -66,11 +57,13 @@ export class DemandesComponent implements OnInit {
   ///clickAddDemandes(){
   /// this.formDemande.reset();
   ///}
-  clickAddDemandes() {
+  clickAddDemandes( content:any) {
     this.showForm = !this.showForm;
     this.formDemande.reset();
       this.showAdd = true;
       this.showUpdate = false;
+      this.openModal(content)
+
   }
   close() {
     this.showForm = !this.showForm;
@@ -79,35 +72,23 @@ export class DemandesComponent implements OnInit {
   openModal(content:any){
     this.modalService.open(content,{size:"lg"})
   }
-  saveDemandes() {
-    this.toastr.success('Demande ajoutée avec succé');
-    console.log(this.formDemande.value);
-    // console.log(this.formDemande.get('Nom')?.value);
-    // console.log(this.formDemande.get('Prenom')?.value);
-    // console.log(this.formDemande.get('type')?.value);
-    // console.log(this.formDemande.get(this.model.option)?.value);
-    // console.log(this.formDemande.get(this.model1.option1)?.value);
-    // console.log(this.formDemande.get('date_debut')?.value);
-    // console.log(this.formDemande.get('date_fin')?.value);
-    // console.log(this.formDemande.get('heure_debut')?.value);
-    // console.log(this.formDemande.get('heure_fin')?.value);
-    // console.log(this.formDemande.get('description')?.value);
-
-
+  postDemandeDetails()
+   {
+     console.log(this.formDemande.value)
     this.demandesServ.postDemande(this.formDemande.value)
     .subscribe(res=>{
       console.log(res);
-      this.toastr.success('Demande  ajouté avec succée ');
+      this.toastr.success('Employé  ajouté avec succée ');
       let ref = document.getElementById('cancel')
       ref?.click();
       this.formDemande.reset();
       return this.getAllDemande();
     },
     err=>{
-      this.toastr.error('Il y a un problém ');
+      this.toastr.error('Il y a un problèm ');
     }
     )
-   }
+  }
    getAllDemande(){
     this.demandesServ.getAllDemande().subscribe((res : any)=>{
       this.demandes = res;
@@ -127,44 +108,7 @@ export class DemandesComponent implements OnInit {
       this.getAllDemande();
     })
   }
-  onUpdate(Demande : any){
-    this.showAdd = false;
-    this.showUpdate = true;
-    
-    this.demandes.id = this.demandes.id;
-    this.formDemande.controls['Nom'].setValue(this.demandes.Nom);
-    this.formDemande.controls['Prenom'].setValue(this.demandes.Prenom);
-    this.formDemande.controls['type'].setValue(this.demandes.type);
-    this.formDemande.controls['date_debut'].setValue(this.demandes.date_debut);
-    this.formDemande.controls['date_fin'].setValue(this.demandes.date_fin);
-    this.formDemande.controls['heure_debut'].setValue(this.demandes.heure_debut);
-    this.formDemande.controls['heure_fin'].setValue(this.demandes.heure_fin);
-    this.formDemande.controls['description'].setValue(this.demandes.description);
 
-   
-  }
-  updateDemandeDetails(){
-    this.demandes.Nom = this.formDemande.value.Nom;
-    this.demandes.Prenom = this.formDemande.value.Prenom;
-    this.demandes.type = this.formDemande.value.type;
-    this.demandes.datte_debut = this.formDemande.value.date_debut;
-    this.demandes.date_fin = this.formDemande.value.date_fin;
-    this.demandes.heure_debut = this.formDemande.value.heure_debut;
-    this.demandes.heure_fin = this.formDemande.value.heure_fin;
-    this.demandes.description = this.formDemande.value.description;
-
-    
-
-    this.demandes.updateEmployee(this.demandes,this.demandes.id)
-    .subscribe((res : any)=>{
-      this.toastr.success('Demande modifié');
-      let ref = document.getElementById('cancel')
-      ref?.click();
-      this.formDemande.reset();
-      this.getAllDemande();
-    })
-
-  }
     
 
      

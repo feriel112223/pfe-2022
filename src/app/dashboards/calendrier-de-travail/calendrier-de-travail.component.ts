@@ -24,6 +24,8 @@ import {
   CalendarEventTimesChangedEvent,
   CalendarView,
 } from 'angular-calendar';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CalendrierService } from 'src/app/shared/services/calendrier.service';
 const colors: any = {
   red: {
     primary: '#ad2121',
@@ -45,12 +47,14 @@ const colors: any = {
   styleUrls: ['./calendrier-de-travail.component.css']
 })
 export class CalendrierDeTravailComponent implements OnInit {
+  showForm=false;
+
 
   
   @ViewChild('modalContent') modalContent!: TemplateRef<any>;
 
   view: CalendarView = CalendarView.Month;
-
+  formEvent:FormGroup;
   CalendarView = CalendarView;
 
   viewDate: Date = new Date();
@@ -81,49 +85,35 @@ export class CalendrierDeTravailComponent implements OnInit {
   refresh = new Subject<void>();
 
   events: CalendarEvent[] = [
-    {
-      start: subDays(startOfDay(new Date()), 1),
-      end: addDays(new Date(), 1),
-      title: 'A 3 day event',
-      color: colors.red,
-      actions: this.actions,
-      allDay: true,
-      resizable: {
-        beforeStart: true,
-        afterEnd: true,
-      },
-      draggable: true,
-    },
-    {
-      start: startOfDay(new Date()),
-      title: 'An event with no end date',
-      color: colors.yellow,
-      actions: this.actions,
-    },
-    {
-      start: subDays(endOfMonth(new Date()), 3),
-      end: addDays(endOfMonth(new Date()), 3),
-      title: 'A long event that spans 2 months',
-      color: colors.blue,
-      allDay: true,
-    },
-    {
-      start: addHours(startOfDay(new Date()), 2),
-      end: addHours(new Date(), 2),
-      title: 'A draggable and resizable event',
-      color: colors.yellow,
-      actions: this.actions,
-      resizable: {
-        beforeStart: true,
-        afterEnd: true,
-      },
-      draggable: true,
-    },
+     //{
+      // start: subDays(startOfDay(new Date()), 1),
+    //   end: addDays(new Date(), 1),
+    //   title: 'A 3 day event',
+    //   color: colors.red,
+    //   actions: this.actions,
+    //   allDay: true,
+    //   resizable: {
+    //     beforeStart: true,
+    //     afterEnd: true,
+    //   },
+    //   draggable: true,
+    // },
+    
   ];
 
   activeDayIsOpen: boolean = true;
 
-  constructor(private modal: NgbModal) {}
+  constructor(private modalService: NgbModal,private formbuilder:FormBuilder
+    ,private calendrierServ:CalendrierService) {
+    this.formEvent = this.formbuilder.group({
+
+      dateEvent :['', Validators.required],
+      heureStart :['',Validators.required],
+      heureEnd:['',Validators.required],
+      event:['', Validators.required],
+    })
+    this.getAllEvent();
+  }
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {
@@ -139,33 +129,98 @@ export class CalendrierDeTravailComponent implements OnInit {
     }
   }
 
+  getAllEvent(){
+    // this.employeesServ.getEmployee().subscribe((res : any)=>{
+    //   this.employees = res;
+    //   console.log(res);
 
-
+    // },
+    // (err : any)=>{
+    //   console.log(err);
+      
+    // }
+    // )
+  }
   handleEvent(action: string, event: CalendarEvent): void {
     this.modalData = { event, action };
-    this.modal.open(this.modalContent, { size: 'lg' });
+    this.modalService.open(this.modalContent, { size: 'lg' });
+  }
+  clickAddEvent(content:any){
+    this.showForm= !this.showForm;
+
+    this.formEvent.reset();
+    this.openModal(content)
+ }
+ openModal(content:any){
+  this.modalService.open(content,{size:"lg"})
+}
+  close(){
+    this.showForm= !this.showForm;
+
+   }
+  // openModal(content:any){
+   // this.modalService.open(content,{size:"lg"})
+  //}
+  postEvent(){
+  this.calendrierServ.postEvent(this.formEvent.value)
+  .subscribe((res:any)=>{
+    console.log(res);
+    alert("Votre tache ajouté avec succé!");
+    let ref = document.getElementById('cancel')
+    ref?.click();
+    this.formEvent.reset();
+    return this.getAllEvent();
+  },
+  err=>{
+    alert("Il y'a un problèm!");
+  }
+  )
   }
 
   addEvent(): void {
+    
+    /**
+     * 
+     */ 
+
+    const dateDeb  =new Date(this.formEvent.get('dateEvent')?.value )
+    dateDeb.setHours(this.formEvent.get('heureStart')?.value.hour)
+    dateDeb.setMinutes(this.formEvent.get('heureStart')?.value.minute)
+    const dateFin  =new Date(this.formEvent.get('dateEvent')?.value )
+    dateFin.setHours(this.formEvent.get('heureEnd')?.value.hour)
+    dateFin.setMinutes(this.formEvent.get('heureEnd')?.value.minute)
+    
+    this.formEvent.get("heureStart")?.setValue(dateDeb)
+    this.formEvent.get("heureEnd")?.setValue(dateFin)
+    console.log(this.formEvent.value);
+    
     this.events = [
       ...this.events,
       {
-        title: 'New event',
-        start: startOfDay(new Date()),
-        end: endOfDay(new Date()),
+        title: this.formEvent.get('event')?.value,
+        start: this.formEvent.get('heureStart')?.value,
+        end: this.formEvent.get('heureEnd')?.value,
         color: colors.red,
         draggable: true,
-        resizable: {
-          beforeStart: true,
-          afterEnd: true,
-        },
+       
       },
     ];
+   
+    this.modalService.dismissAll()
   }
 
-  deleteEvent(eventToDelete: CalendarEvent) {
-    this.events = this.events.filter((event) => event !== eventToDelete);
+  deleteEvent(event : any){
+    this.calendrierServ.deleteEvent(event.id)
+    .subscribe(res=>{
+      alert('votre tache est  supprimée !');
+     
+      this.getAllEvent();
+    })
   }
+
+  //deleteEvent(eventToDelete: CalendarEvent) {
+    //this.events = this.events.filter((event) => event !== eventToDelete);
+  //}
 
   setView(view: CalendarView) {
     this.view = view;
@@ -175,15 +230,7 @@ export class CalendrierDeTravailComponent implements OnInit {
     this.activeDayIsOpen = false;
   }
 
-
-   
-   
-
-
   ngOnInit(): void {
-   
-
-
 
   }
 

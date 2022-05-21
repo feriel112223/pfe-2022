@@ -12,15 +12,15 @@ export class EmployeeService {
   
   
   postEmployee(data: any) : Observable<any>{
-    return this.http.post<any>(this.path + "/Employes" , data);
+    return this.http.post<any>(this.path + "/employes" , data);
   }
   getEmployee() : Observable<any> {
-    return this.http.get<any>(this.path + "/Employes");
+    return this.http.get<any>(this.path + "/employes");
   }
   updateEmployee(data: any, id: number) : Observable<any> {
-    return this.http.put<any>(this.path + "/Employes/"+id, data);
+    return this.http.put<any>(this.path + "/employes/"+id, data);
   }
   deleteEmployee(id: number) {
-    return this.http.delete<any>(this.path + "/Employes/"+id );
+    return this.http.delete<any>(this.path + "/employes/"+id );
   }
 }

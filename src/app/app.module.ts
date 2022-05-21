@@ -29,6 +29,11 @@ import { FlatpickrModule } from 'angularx-flatpickr';
 import { AngularDigitalClockModule } from 'angular-digital-clock';
 import { ChartsModule } from 'ng2-charts';
 import {NgxPrintModule} from 'ngx-print';
+import { DashComponent } from './dashboards/dash/dash.component';
+import { AdmincongesComponent } from './dashboards/adminconges/adminconges.component';
+import { AdmineventComponent } from './dashboards/adminevent/adminevent.component';
+import { PresenceComponent } from './dashboards/presence/presence.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,9 +48,10 @@ import {NgxPrintModule} from 'ngx-print';
     ListeCongesComponent,
     FicheDePaiesComponent,
     ResetpasswordComponent,
-    
-    
-  
+    DashComponent,
+    AdmincongesComponent,
+    AdmineventComponent,
+    PresenceComponent,
   ],
 
   imports: [
@@ -66,12 +72,8 @@ import {NgxPrintModule} from 'ngx-print';
     FlatpickrModule.forRoot(),
     AngularDigitalClockModule,
     ChartsModule,
-    NgxPrintModule
-   
-
-
+    NgxPrintModule,
     
-   
   ],
   providers: [],
   bootstrap: [AppComponent]
